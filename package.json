@@ -18,6 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy": "surge build"
+    "deploy": "surge build",
+    "build-deploy": "yarn build && surge build"
   }
 }

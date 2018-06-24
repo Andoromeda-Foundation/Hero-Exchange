@@ -9,8 +9,6 @@ export default function Footer() {
         <br />
         Made with React and ❤️ by <a href="https://frankwei.xyz">Frank Wei</a>.
         <br />
-        星云水浒™️ 是 仙女座科技有限公司的商标。
-        <br />
         <a onClick={giveMeMoney}> 请站长喝咖啡 </a>
         <br />
         从 Google Chrome 应用商店下载 
