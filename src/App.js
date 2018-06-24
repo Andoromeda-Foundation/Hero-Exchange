@@ -28,7 +28,7 @@ class App extends Component {
               <Link className="navbar-item" to="/buy" > 我要买卡 </Link>
               <Link className="navbar-item" to="/sell" > 我要卖卡 </Link>
               <div className="navbar-end">
-              <Link className="navbar-item is-right" to="/my" > 我的卡牌销售 </Link>
+              <Link className="navbar-item is-right" to="/my" > 我的销售广告 </Link>
               </div>
             </nav>
 

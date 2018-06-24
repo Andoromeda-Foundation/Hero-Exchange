@@ -48,7 +48,8 @@ export default class SellPage extends Component {
             price,
             seller: account
         }
-        await sendAd(payload)
+        const result = await sendAd(payload)
+        alert("广告发布中，请稍后到「我的销售广告」检查")
     }
 
     render() {
