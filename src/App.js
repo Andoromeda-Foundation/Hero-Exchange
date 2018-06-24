@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import {About} from "./pages/About";
+import BuyPage from './pages/Buy';
+import SellPage from "./pages/Sell";
 import Footer from "./components/footer";
 import Home from "./pages/Home";
-import MyToken from "./pages/MyToken";
+import MyAccount from "./pages/MyAccount";
 import Construction, {Error404} from "./pages/Construction";
 import './App.css';
 
@@ -26,7 +28,7 @@ class App extends Component {
               <Link className="navbar-item" to="/buy" > 我要买卡 </Link>
               <Link className="navbar-item" to="/sell" > 我要卖卡 </Link>
               <div className="navbar-end">
-              <Link className="navbar-item is-right" to="/my" > 我的卡牌 </Link>
+              <Link className="navbar-item is-right" to="/my" > 我的账户 </Link>
               </div>
             </nav>
 
@@ -35,11 +37,11 @@ class App extends Component {
               <Route exact path="/" component={Home} />            
               <Route path="/about" component={About} />
               <Route path="/buy" 
-              component={() => Construction({pageName: '我要买卡'})} />
+              component={BuyPage} />
               <Route path="/sell" 
-              component={() => Construction({pageName: '我的买卡'})} />
+              component={SellPage} />
               <Route path="/my" 
-              component={() => Construction({pageName: '我的爱心'})} />
+              component={MyAccount} />
               <Route 
               component={Error404} />
               </Switch>
