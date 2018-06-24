@@ -15,7 +15,8 @@ class App extends Component {
         <section className="section">
           <div className="container">
             <h1 className="title super-big">
-              Crypto Heart
+              星云水浒 OTC
+              
             </h1>
             <p className="subtitle">
               给你比 <span role="img" aria-label="heart">❤️</span>
