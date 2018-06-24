@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bignumber.js": "^7.2.1",
     "leancloud-storage": "^3.7.3",
     "nebpay.js": "^0.2.0",
     "ramda": "^0.25.0",
