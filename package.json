@@ -19,6 +19,6 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "surge build",
-    "build-deploy": "yarn build && surge build"
+    "build-deploy": "yarn build && echo hero-otc.etherfen.com > ./build/CNAME && surge build"
   }
 }
