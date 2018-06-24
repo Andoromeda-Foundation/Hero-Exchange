@@ -51,7 +51,7 @@ export default class MyToken extends Component {
                     <CardList heros={
                         mySellingCards
                         .map(card => {
-                            const front = `http://test.cdn.hackx.org/heros_new/${card.cardId}.jpeg`
+                            const front = `http://test.cdn.hackx.org/heros_new/${card.heroId}.jpeg`
                             return Object.assign(card, {front})
                         })
                     } />
