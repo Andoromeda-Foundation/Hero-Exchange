@@ -1,7 +1,5 @@
-import { BigNumber } from 'bignumber.js';
-import { NasTool } from '@/api';
-import heroProfile from '@/config/cards.json';// '@/heroProfile.json';
-import heroStatus from '../../static/herostatu.json';
+import { UnitConversionTool } from '../utils';
+import heroProfile from '../hero.json';// '@/heroProfile.json';
 import Contract from './contract';
 
 import NebPay from 'nebpay.js';
@@ -10,7 +8,6 @@ const nebPay = new NebPay();
 
 function getCardInfoByHeroId(id, tkId, prices) {
   const basic = heroProfile[id];
-  const status = heroStatus[id];
   if (!basic) {
     console.error(`error detected id is ${id}`);
   }
@@ -20,7 +17,7 @@ function getCardInfoByHeroId(id, tkId, prices) {
     back: `http://test.cdn.hackx.org/backs_new/${id}.jpeg`,
   };
 
-  const res = Object.assign(basic, cardImage, status, prices);
+  const res = Object.assign(basic, cardImage, prices);
   const result = Object.assign({ tokenId: tkId }, res);
   return result;
 }
@@ -31,40 +28,6 @@ export default class LinkIdolContract extends Contract {
       contractAddress: 'n1gDfiiQLEBu95xDWHGxNi4qToyXjD2vE4D',
       network: 'mainnet',
     });
-  }
-
-  async draw(referrer = '', value) {
-    const t = this.call({
-      functionName: 'draw',
-      value: new BigNumber(value).times(1000000000000000000).toString(),
-      args: [referrer],
-    }).then(console.info);
-    return new Promise((resolve) => {
-      const result = this.send(
-        {
-          functionName: 'draw',
-          value,
-          data: [referrer],
-          options: {
-            callback: NebPay.config.mainnetUrl,
-            listener(serialNumber, data) {
-              console.log(`serialNumberrrr:${serialNumber} data: ${JSON.stringify(data)}`);
-              if (data === 'Error: Transaction rejected by user' || data === false || data === true) {
-                resolve('cancel');
-              } else {
-                resolve(serialNumber);
-              }
-              // 返回式样：
-              // serialNumber:MiTRVkmRZOx0anWMZTgwhpJGrm50LHYr data: false (点二维码下方取消支付时显示)
-              // serialNumber:MiTRVkmRZOx0anWMZTgwhpJGrm50LHYr data: "Error: Transaction rejected by user"
-              // serialNumber:Nqjj6WPtQvcKxUf0OlCVRKYadqYUHI7r data: {"txhash":"f7a0316f3f7b74f493d008a6fc8f058e7b8da0238453f42a00e5c025820098ab","contract_address":""}
-              // resolve(serialNumber);
-            },
-          },
-        });
-      console.log(`send: ${result}`);
-    });
-    // return result;
   }
 
   async getTokenIDsByAddress(address) {
@@ -141,7 +104,8 @@ export default class LinkIdolContract extends Contract {
       functionName: 'priceOf',
       args: [tokenId],
     });
-    return JSON.parse(price);
+    const priceNumber = JSON.parse(price)
+    return UnitConversionTool.fromWeiToNas(priceNumber).toString(10);
   }
 
   async getTotalSupply() { // Added by Dawn

@@ -1,4 +1,5 @@
 import React from "react"
+import { giveMeMoney } from "../utils";
 const DownloadURL = "https://chrome.google.com/webstore/detail/nasextwallet/gehjkhmhclgnkkhpfamakecfgakkfkco"
 export default function Footer() {
     return (<footer className="footer">
@@ -6,12 +7,16 @@ export default function Footer() {
       <p>
         <strong>星云水浒 OTC</strong> 
         <br />
-        Made with ❤️ by <a href="https://frankwei.xyz">Frank Wei</a>.
+        Made with React and ❤️ by <a href="https://frankwei.xyz">Frank Wei</a>.
         <br />
         星云水浒™️ 是 仙女座科技有限公司的商标。
         <br />
+        <a onClick={giveMeMoney}> 请站长喝咖啡 </a>
+        <br />
         从 Google Chrome 应用商店下载 
-        <a href={DownloadURL}> NasExtWallet</a>, 一个开源且安全的星云链钱包
+        <a href={DownloadURL}> NasExtWallet </a>
+        或
+        <a href="https://nano.nebulas.io/"> NASnano手机钱包</a>
       </p>
     </div>
   </footer>)

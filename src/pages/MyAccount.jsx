@@ -29,7 +29,7 @@ export default class MyToken extends Component {
         if (address === "") {
             return (
                 <div className="my-token">
-                    <h1 className="title"> 我的账户 </h1>
+                    <h1 className="title"> 我的卡牌销售 </h1>
                     <p className="subtitle"> 正在全力加载中 </p> 
                 </div>
             )
@@ -41,6 +41,7 @@ export default class MyToken extends Component {
                         <img src={profile.avatar} alt=""/>
                         <p className="subtitle"> 钱包地址: {address} </p>
                     </div>
+                    <h1 className="title"> 我当前在售卡牌 </h1>
                     <CardList heros={
                         [0,1,2,3,4,5,6,7,8,9]
                         .map(id => ({front: `http://test.cdn.hackx.org/heros_new/${id}.jpeg` , id}))

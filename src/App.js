@@ -6,7 +6,7 @@ import SellPage from "./pages/Sell";
 import Footer from "./components/footer";
 import Home from "./pages/Home";
 import MyAccount from "./pages/MyAccount";
-import Construction, {Error404} from "./pages/Construction";
+import {Error404} from "./pages/Construction";
 import './App.css';
 
 class App extends Component {
@@ -28,7 +28,7 @@ class App extends Component {
               <Link className="navbar-item" to="/buy" > 我要买卡 </Link>
               <Link className="navbar-item" to="/sell" > 我要卖卡 </Link>
               <div className="navbar-end">
-              <Link className="navbar-item is-right" to="/my" > 我的账户 </Link>
+              <Link className="navbar-item is-right" to="/my" > 我的卡牌销售 </Link>
               </div>
             </nav>
 
@@ -46,8 +46,6 @@ class App extends Component {
               component={Error404} />
               </Switch>
             </div>
-
-
           </div>
         </section>
         </Router>
