@@ -1,6 +1,7 @@
 import React , { Component } from "react";
 import NasId from "../contract/nasid";
 import CardList from "../components/cardList";
+import { getAds } from "../ad";
 import { getMe } from "../utils";
 
 export default class MyToken extends Component {
@@ -10,7 +11,8 @@ export default class MyToken extends Component {
             account: {
                 address: "",
                 profile: {}
-            }
+            },
+            mySellingCards: []
         }
     }
 
@@ -20,7 +22,8 @@ export default class MyToken extends Component {
         const profile = await nasIdContract.fetchAccountDetail(address)
         const account = {address, profile}
         this.setState({account})
-
+        const mySellingCards = await getAds({targetSeller: address})
+        this.setState({mySellingCards})
     }
 
     render() {
@@ -34,17 +37,23 @@ export default class MyToken extends Component {
                 </div>
             )
         } else {
+            const {mySellingCards} = this.state
             return (
                 <div className="my-token">
                     <h1 className="title"> 我的账户 </h1>
                     <div className="my-profile">
-                        <img src={profile.avatar} alt=""/>
+                        <a href="http://nasid.pro/#/my">
+                        <img src={profile.avatar} alt="修改头像去 NasId"/>
+                        </a>
                         <p className="subtitle"> 钱包地址: {address} </p>
                     </div>
                     <h1 className="title"> 我当前在售卡牌 </h1>
                     <CardList heros={
-                        [0,1,2,3,4,5,6,7,8,9]
-                        .map(id => ({front: `http://test.cdn.hackx.org/heros_new/${id}.jpeg` , id}))
+                        mySellingCards
+                        .map(card => {
+                            const front = `http://test.cdn.hackx.org/heros_new/${card.cardId}.jpeg`
+                            return Object.assign(card, {front})
+                        })
                     } />
                 </div>
             )

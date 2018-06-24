@@ -12,7 +12,8 @@ export default class SellPage extends Component {
             heroId: -1,
             profile: {},
             price: "",
-            tokenOwner: ""
+            tokenOwner: "",
+            isClaimed: true
         }
     }
 
@@ -34,7 +35,8 @@ export default class SellPage extends Component {
             const contract = new Contract()
             const price = await contract.priceOf(cardId)
             const tokenOwner = await contract.ownerOf(cardId)
-            this.setState({price, tokenOwner})
+            const isClaimed = await contract.isTokenClaimed(cardId)
+            this.setState({price, tokenOwner, isClaimed})
         }
     }
 
@@ -50,7 +52,7 @@ export default class SellPage extends Component {
     }
 
     render() {
-        const { cardId, heroId, price, tokenOwner, account } = this.state
+        const { cardId, heroId, price, tokenOwner, account, isClaimed } = this.state
         const { name, nickname } = this.state.profile || {}
         return (<div className="selling">
             <h1 className="title medium"> 发布卖卡广告 </h1>
@@ -66,6 +68,7 @@ export default class SellPage extends Component {
                 <p>  {name} · {nickname} </p>
                 <p> 销售价格： {price ? `${price} NAS` : ""} </p>
                 <p> 该币的持有人： {account}</p>
+                <p> 是否换取水浒币： {isClaimed ? "是" : "否"}</p>
                 <p>  修改价格? <a href={`https://nas.cryptohero.pro/#/item/${cardId}/${heroId}`}>回到卡牌页面修改 </a></p>
                 </div>
             :
@@ -73,10 +76,10 @@ export default class SellPage extends Component {
             }
             <button className="button is-primary is-large" 
             onClick={() => this.postAd()}
-            disabled={price === "" || tokenOwner !== account }> 
+            disabled={price === "" || tokenOwner !== account || isClaimed }> 
             {
-                cardId!==-1 && tokenOwner!== account
-                ? "你不是该币的所有人，所以不能"
+                cardId!==-1 && (tokenOwner!== account || isClaimed )
+                ? "你不是该币的所有人，或已兑换水浒币，所以不能"
                 : ""
             }
             发布广告

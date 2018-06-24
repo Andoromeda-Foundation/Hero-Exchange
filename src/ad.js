@@ -12,12 +12,15 @@ export async function sendAd(payload) {
     console.info(result)
 }
 
-export async function getAds() {
+export async function getAds({targetSeller}) {
     const {body} = await get(api).set(
         {
             "X-LC-Id": "cHhukEJlIbYo6kpuSW3VoCbj-gzGzoHsz",
             "X-LC-Key": "DJtsnScbqXwDVXubyq3dLQ8y"
         })
-        const {results} = body
+        var {results} = body
+        if (targetSeller) {
+            results = results.filter(({seller}) => targetSeller === seller)
+        }
     return results
 }

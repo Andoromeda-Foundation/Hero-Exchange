@@ -20,7 +20,7 @@ class App extends Component {
               星云水浒 OTC
             </h1>
             <p className="subtitle">
-              非官方，不担保的类 58 同城信息发布平台 <span role="img" aria-label="heart">❤️</span>
+              非官方，不担保的卡牌交换信息发布平台 <span role="img" aria-label="heart">❤️</span>
             </p>
             <nav className="navbar">
               <Link className="navbar-item" to="/" > 首页 </Link>

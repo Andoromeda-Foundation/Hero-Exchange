@@ -10,7 +10,7 @@ export default class BuyPage extends Component {
         }
     }
     async componentWillMount() {
-        const rawAds = await getAds()
+        const rawAds = await getAds({})
         const ads = rawAds.map((rawAds) => {
             const { heroId, cardId } = rawAds
             const { name, nickname } = HeroesList[heroId]
