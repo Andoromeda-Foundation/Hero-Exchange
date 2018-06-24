@@ -1,8 +1,8 @@
 import React from "react"
 const DownloadURL = "https://chrome.google.com/webstore/detail/nasextwallet/gehjkhmhclgnkkhpfamakecfgakkfkco"
 export default function Footer() {
-    return (<footer class="footer">
-    <div class="content has-text-centered">
+    return (<footer className="footer">
+    <div className="content has-text-centered">
       <p>
         <strong>星云水浒 OTC</strong> 
         <br />
